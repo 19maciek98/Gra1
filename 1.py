@@ -334,3 +334,41 @@ class GameLogic:
             pygame.time.delay(100)
             self._input()
             self._update()
+
+
+
+class LeaderBoard:
+
+    def __init__(self):
+        # needs to be changed to relative path
+        file = open("C:\git\hmt\Learning\leaderboard.txt", "r")
+        self.leaderboard = []
+        i = 0
+        while i < 5:
+            chunk = file.readline()
+            if (chunk == ''):
+                break
+            LeaderBoard.insert(0, chunk.splitlines())
+            i += 1
+        file.close()
+        self.leaderboard.reverse()
+
+    @staticmethod
+    def addToLeaderboard(self, name, newScore):
+        i = 0
+        for score in self.leaderboard:
+            if newScore > score:
+                self.leaderboard.remove(score)
+                self.leaderboard.insert(i, newScore)
+            i += 1
+        file = open("C:\git\hmt\Learning\leaderboard.txt", "w")
+        # add name and score
+        file.close()
+
+
+def main():
+    #l = LeaderBoard()
+    game = GameLogic(800, 800)
+
+
+main()
